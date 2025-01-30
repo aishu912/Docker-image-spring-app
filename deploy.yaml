@@ -1,0 +1,28 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: veldeploy
+
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      env: qa
+
+  template:
+    metadata:
+      name: velpod
+      labels:
+        env: qa
+
+
+    spec:
+      containers:
+        - name: vel-1
+          image: aishwarya97pb/spring:1.0
+          ports:
+            - containerPort: 8080
+
+      nodeSelector:
+        name: worker
